@@ -15,7 +15,7 @@
             font-size: 16px;
             margin-right: 10px;
         }
-        input, select {
+        input {
             padding: 10px;
             font-size: 14px;
             margin: 10px 0;
@@ -25,7 +25,7 @@
             background-color: #333; /* Warna latar belakang input */
             color: #fff; /* Teks input berwarna putih */
         }
-        input:focus, select:focus {
+        input:focus {
             border-color: #4CAF50; /* Warna border ketika fokus */
             background-color: #444; /* Background lebih terang ketika fokus */
         }
@@ -54,14 +54,15 @@
     <label for="onion-domain">Enter Onion Domain:</label>
     <input type="text" id="onion-domain" placeholder="e.g., example.onion" required><br><br>
 
-    <label for="server-ip">Choose Server IP:</label>
-    <select id="server-ip">
-        <option value="192.168.1.1">192.168.1.1</option>
-        <option value="192.168.1.2">192.168.1.2</option>
-        <option value="192.168.1.3">192.168.1.3</option>
-        <option value="10.0.0.1">10.0.0.1</option>
-        <option value="10.0.0.2">10.0.0.2</option>
-    </select><br><br>
+    <label for="server-ip">Enter Server IP:</label>
+    <input list="ip-list" id="server-ip" placeholder="Choose or type an IP address" required><br><br>
+    <datalist id="ip-list">
+        <option value="192.168.1.1">
+        <option value="192.168.1.2">
+        <option value="192.168.1.3">
+        <option value="10.0.0.1">
+        <option value="10.0.0.2">
+    </datalist><br><br>
 
     <button onclick="submitData()">Submit</button>
 
