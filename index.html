@@ -8,15 +8,26 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            background-color: black; /* Latar belakang hitam */
+            color: white; /* Warna teks putih */
         }
         label {
             font-size: 16px;
             margin-right: 10px;
         }
-        select, input {
+        input, select {
             padding: 10px;
             font-size: 14px;
             margin: 10px 0;
+            width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #333; /* Warna latar belakang input */
+            color: #fff; /* Teks input berwarna putih */
+        }
+        input:focus, select:focus {
+            border-color: #4CAF50; /* Warna border ketika fokus */
+            background-color: #444; /* Background lebih terang ketika fokus */
         }
         button {
             padding: 10px 20px;
@@ -24,10 +35,15 @@
             background-color: #4CAF50;
             color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
         button:hover {
             background-color: #45a049;
+        }
+        #result {
+            font-size: 16px;
+            margin-top: 20px;
         }
     </style>
 </head>
