@@ -3,40 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Onion & IP Selection</title>
+    <title>Input Dark Web Domain & Server Selection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
             background-color: black; /* Latar belakang hitam */
             color: white; /* Warna teks putih */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
         }
         label {
             font-size: 16px;
             margin-right: 10px;
         }
         input {
-            padding: 10px;
+            padding: 12px 20px;
             font-size: 14px;
-            margin: 10px 0;
             width: 300px;
             border: 2px solid #ccc;
             border-radius: 5px;
-            background-color: #333; /* Warna latar belakang input */
+            background-color: transparent; /* Latar belakang transparan */
             color: #fff; /* Teks input berwarna putih */
+            text-align: left;
         }
         input:focus {
             border-color: #4CAF50; /* Warna border ketika fokus */
-            background-color: #444; /* Background lebih terang ketika fokus */
+            background-color: transparent;
+        }
+        input::placeholder {
+            color: #aaa; /* Warna placeholder */
+        }
+        input:-webkit-autofill {
+            background-color: transparent !important; /* Menghapus autofill */
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 14px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #45a049;
@@ -45,39 +60,93 @@
             font-size: 16px;
             margin-top: 20px;
         }
+        #error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .domain-input {
+            position: relative;
+            width: 300px;
+        }
+        .domain-input input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            color: #fff;
+            background-color: transparent;
+            border: 2px solid #aaa;
+            border-radius: 5px;
+        }
+        .domain-input input:focus {
+            border-color: #4CAF50;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Onion Domain & IP Server Selection</h2>
+    <div class="input-container">
+        <h2>Dark Web Domain & Server Selection</h2>
 
-    <label for="onion-domain">Enter Onion Domain:</label>
-    <input type="text" id="onion-domain" placeholder="e.g., example.onion" required><br><br>
+        <label for="darkweb-domain">Enter Dark Web Domain:</label>
+        <div class="domain-input">
+            <input list="domain-list" id="darkweb-domain" placeholder="Choose or type a domain" required><br><br>
+            <datalist id="domain-list">
+                <option value="example.onion">
+                <option value="example.i2p">
+                <option value="example.exit">
+                <option value="example.xyz">
+                <option value="example.g9">
+                <option value="example.djp">
+                <option value="example.xt2x">
+            </datalist><br><br>
+        </div>
 
-    <label for="server-ip">Enter Server IP:</label>
-    <input list="ip-list" id="server-ip" placeholder="Choose or type an IP address" required><br><br>
-    <datalist id="ip-list">
-        <option value="192.168.1.1">
-        <option value="192.168.1.2">
-        <option value="192.168.1.3">
-        <option value="10.0.0.1">
-        <option value="10.0.0.2">
-    </datalist><br><br>
+        <label for="server-ip">Enter Server IP:</label>
+        <input type="text" id="server-ip" placeholder="Enter Server IP" required><br><br>
 
-    <button onclick="submitData()">Submit</button>
+        <button onclick="submitData()">Submit</button>
 
-    <p id="result"></p>
+        <p id="result"></p>
+        <p id="error"></p> <!-- Tempat untuk menampilkan error -->
+    </div>
 
     <script>
         function submitData() {
-            var onionDomain = document.getElementById("onion-domain").value;
+            var darkwebDomain = document.getElementById("darkweb-domain").value;
             var serverIP = document.getElementById("server-ip").value;
+            var errorMessage = document.getElementById("error");
+            errorMessage.textContent = "";  // Clear previous error message
 
-            if (onionDomain && serverIP) {
-                document.getElementById("result").innerHTML = "You selected the Onion domain: " + onionDomain + "<br>And the Server IP: " + serverIP;
-            } else {
-                document.getElementById("result").innerHTML = "Please enter both the Onion domain and select a server IP.";
+            // Regex untuk memvalidasi domain Dark Web dengan ekstensi yang benar
+            var domainRegex = /^(.*\.(onion|i2p|exit|xyz|g9|djp|xt2x))$/;
+
+            // Validasi domain
+            if (!domainRegex.test(darkwebDomain)) {
+                errorMessage.textContent = "Please enter a valid Dark Web domain (e.g., .onion, .i2p, .exit, .xyz, .g9, .djp, .xt2x).";
+                return; // Hentikan fungsi jika domain tidak valid
             }
+
+            // Validasi agar tidak ada spasi dalam domain
+            if (/\s/.test(darkwebDomain)) {
+                errorMessage.textContent = "Domain should not contain spaces.";
+                return; // Hentikan fungsi jika ada spasi
+            }
+
+            // Validasi IP (jika diperlukan)
+            var ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            if (!ipRegex.test(serverIP)) {
+                errorMessage.textContent = "Please enter a valid server IP address.";
+                return;
+            }
+
+            // Jika semuanya valid, tampilkan hasil
+            document.getElementById("result").innerHTML = "You selected the Dark Web domain: " + darkwebDomain + "<br>And the Server IP: " + serverIP;
         }
     </script>
 
