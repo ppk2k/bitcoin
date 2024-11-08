@@ -3,133 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Website with Stripe Payment</title>
+    <title>Server Information - 59.184.138.210</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #2c3e50;
+            background-color: #282c34;
             color: white;
             margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #34495e;
             padding: 20px;
-            border-radius: 8px;
         }
         h1 {
-            text-align: center;
+            color: #61dafb;
         }
-        .form-group {
+        .section {
             margin-bottom: 20px;
         }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
+        .command {
+            background-color: #333;
             padding: 10px;
             margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            background-color: #ecf0f1;
+            font-family: Consolas, monospace;
+            border-radius: 5px;
         }
-        button {
-            background-color: #e74c3c;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #c0392b;
-        }
-        .payment-form {
-            margin-top: 20px;
-        }
-        #card-element {
-            width: 100%;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 4px;
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Login to Your Account</h1>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required />
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required />
-            </div>
-            <button type="submit">Login</button>
-        </form>
+    <h1>Server Information - 59.184.138.210</h1>
 
-        <div class="payment-form" id="payment-section" style="display: none;">
-            <h2>Make a Payment</h2>
-            <form id="payment-form">
-                <div id="card-element"></div>
-                <button id="submit">Pay Now</button>
-            </form>
-        </div>
+    <div class="section">
+        <h2>Server Details</h2>
+        <p>IP Address: <strong>59.184.138.210</strong></p>
+        <p>Reverse DNS: <strong>59.184.138.210.rev.iijgio.jp</strong></p>
+        <p>Location: Japan (IIJ GIO Cloud Provider)</p>
     </div>
 
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
-        const stripe = Stripe('YOUR_PUBLISHABLE_KEY'); // Replace with your Stripe Publishable Key
-        const elements = stripe.elements();
-        const card = elements.create('card');
-        card.mount('#card-element');
+    <div class="section">
+        <h2>Accessing Your Server via SSH</h2>
+        <p>To access your server, use the following command in your terminal (Linux/Mac) or SSH client (e.g., PuTTY for Windows):</p>
+        <div class="command">ssh username@59.184.138.210</div>
+        <p>Replace <strong>username</strong> with the valid user name for your server.</p>
+        <p>You'll be prompted for a password or SSH key to authenticate.</p>
+    </div>
 
-        const loginForm = document.getElementById('login-form');
-        loginForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            if (username === 'user' && password === 'password') {  // Simple login check
-                alert('Login successful!');
-                document.getElementById('payment-section').style.display = 'block';
-            } else {
-                alert('Invalid login credentials!');
-            }
-        });
+    <div class="section">
+        <h2>Server Management</h2>
+        <p>Once connected, you can manage the server by performing tasks such as:</p>
+        <ul>
+            <li>Install software (e.g., web server, database)</li>
+            <li>Configure security (firewall, SSH keys)</li>
+            <li>Monitor server performance</li>
+            <li>Backup data regularly</li>
+        </ul>
+    </div>
 
-        const paymentForm = document.getElementById('payment-form');
-        paymentForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+    <div class="section">
+        <h2>DNS Configuration for Hosting Websites</h2>
+        <p>If you're using this server for hosting a website, configure the DNS settings as follows:</p>
+        <div class="command">
+            A Record: 59.184.138.210
+        </div>
+        <p>Ensure your domain points to this IP by adding the A record in your domain registrar's DNS settings.</p>
+    </div>
 
-            const { clientSecret } = await fetch('/create-payment-intent', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ amount: 100 }) // Example amount of $1
-            }).then(res => res.json());
+    <div class="section">
+        <h2>Checking Server Status</h2>
+        <p>To verify if your server is online, you can ping the IP:</p>
+        <div class="command">ping 59.184.138.210</div>
+        <p>You can also check open ports using:</p>
+        <div class="command">telnet 59.184.138.210 80</div>
+    </div>
 
-            const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        name: 'Customer'
-                    }
-                }
-            });
+    <div class="section">
+        <h2>Security Recommendations</h2>
+        <p>Ensure your server is secure by following these steps:</p>
+        <ul>
+            <li>Use a firewall to block unnecessary ports</li>
+            <li>Change the default SSH port (22) and use SSH keys for authentication</li>
+            <li>Install SSL/TLS certificates for secure HTTPS access</li>
+        </ul>
+    </div>
 
-            if (error) {
-                console.log(error.message);
-                alert('Payment failed!');
-            } else if (paymentIntent.status === 'succeeded') {
-                alert('Payment succeeded!');
-            }
-        });
-    </script>
+    <footer>
+        <p>&copy; 2024 Server Admin - All Rights Reserved</p>
+    </footer>
 </body>
 </html>
