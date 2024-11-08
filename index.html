@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website dengan latar belakang hitam pekat untuk pembelian dan verifikasi akun.">
+    <meta name="author" content="Nama Anda">
+    <title>Website dengan Latar Belakang Hitam</title>
+
+    <!-- CSS untuk latar belakang hitam dan teks putih -->
+    <style>
+        /* Menetapkan latar belakang hitam untuk seluruh halaman */
+        body {
+            background-color: #000000; /* Latar belakang hitam pekat */
+            color: #FFFFFF; /* Teks berwarna putih agar kontras dengan latar belakang hitam */
+            font-family: Arial, sans-serif; /* Menggunakan font yang mudah dibaca */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Membuat kontainer dengan latar belakang hitam */
+        .container {
+            background-color: #000000; /* Latar belakang hitam pekat */
+            color: #FFFFFF; /* Teks berwarna putih */
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px; /* Menambahkan sedikit radius pada sudut */
+        }
+
+        /* Mengatur heading utama */
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            color: #FF5733; /* Warna merah terang untuk judul */
+        }
+
+        /* Styling untuk tombol */
+        button {
+            background-color: #FF5733; /* Warna tombol */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #e04d26; /* Warna tombol saat hover */
+        }
+
+        /* Styling untuk form */
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+            background-color: #333333;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #555555;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            border: none;
+            padding: 12px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kontainer utama -->
+    <div class="container">
+        <h1>Selamat Datang di Website .onion</h1>
+        <p>Ini adalah contoh website dengan latar belakang hitam pekat dan teks putih.</p>
+        
+        <!-- Formulir Login -->
+        <h2>Login Pengguna</h2>
+        <form action="/login" method="post">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+
+            <input type="submit" value="Login">
+        </form>
+
+        <!-- Formulir Registrasi -->
+        <h2>Registrasi Pengguna Baru</h2>
+        <form action="/register" method="post">
+            <label for="username">Nama Pengguna:</label>
+            <input type="text" id="username" name="username" placeholder="Nama pengguna" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email Anda" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password Anda" required>
+
+            <input type="submit" value="Daftar">
+        </form>
+
+        <!-- Formulir Pembayaran -->
+        <h2>Pembayaran</h2>
+        <form action="/payment" method="post">
+            <label for="amount">Jumlah Pembayaran (Rp):</label>
+            <input type="number" id="amount" name="amount" placeholder="Masukkan jumlah pembayaran" required>
+
+            <input type="submit" value="Proses Pembayaran">
+        </form>
+
+        <!-- Tombol untuk navigasi -->
+        <button onclick="window.location.href='https://torproject.org'">Kunjungi Tor Project</button>
+    </div>
+</body>
+</html>
